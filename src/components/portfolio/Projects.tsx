@@ -5,19 +5,10 @@ import AnimateOnScroll from "./AnimateOnScroll";
 
 const projects = [
   {
-    title: "Portfolio Website",
-    description: "A personal portfolio website built with React and Tailwind CSS to showcase skills, projects, and professional profile.",
-    tags: ["React", "Tailwind CSS", "TypeScript"],
-  },
-  {
-    title: "Task Manager App",
-    description: "A full-stack task management application with user authentication, CRUD operations, and real-time updates.",
-    tags: ["React", "Node.js", "MongoDB"],
-  },
-  {
-    title: "Weather Dashboard",
-    description: "A weather forecasting dashboard consuming a REST API, displaying current conditions and 5-day forecasts.",
-    tags: ["JavaScript", "API", "CSS"],
+    title: "Personal Health & Hygiene Tracker",
+    description: "Python-based application to track daily health and hygiene habits. Analyzed lifestyle data using Pandas and visualized trends with Matplotlib to identify improvement areas and generate actionable health recommendations.",
+    tags: ["Python", "Pandas", "Matplotlib", "Data Analysis"],
+    github: "https://github.com/kottanavaralaxmi16",
   },
 ];
 
@@ -29,7 +20,7 @@ const Projects = () => (
         <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-2">Projects</h2>
         <div className="w-16 h-1 bg-primary mx-auto mb-12 rounded-full" />
       </AnimateOnScroll>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
         {projects.map((p, i) => (
           <AnimateOnScroll key={p.title} animation="animate-scale-in" delay={i * 150}>
             <Card className="hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
@@ -51,11 +42,10 @@ const Projects = () => (
                 </div>
               </CardContent>
               <CardFooter className="gap-2">
-                <Button variant="outline" size="sm" className="gap-1 hover:scale-105 transition-transform">
-                  <Github size={14} /> Code
-                </Button>
-                <Button size="sm" className="gap-1 hover:scale-105 transition-transform">
-                  <ExternalLink size={14} /> Demo
+                <Button variant="outline" size="sm" className="gap-1 hover:scale-105 transition-transform" asChild>
+                  <a href={p.github} target="_blank" rel="noopener noreferrer">
+                    <Github size={14} /> Code
+                  </a>
                 </Button>
               </CardFooter>
             </Card>
