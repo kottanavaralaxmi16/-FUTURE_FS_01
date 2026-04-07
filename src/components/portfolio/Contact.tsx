@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import AnimateOnScroll from "./AnimateOnScroll";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -16,72 +17,68 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-secondary/30">
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-2">
-          Contact Me
-        </h2>
-        <div className="w-16 h-1 bg-primary mx-auto mb-12 rounded-full" />
+    <section id="contact" className="py-20 bg-secondary/30 relative overflow-hidden">
+      <div className="absolute top-20 left-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+      <div className="max-w-6xl mx-auto px-4 relative z-10">
+        <AnimateOnScroll>
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-2">Contact Me</h2>
+          <div className="w-16 h-1 bg-primary mx-auto mb-12 rounded-full" />
+        </AnimateOnScroll>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-          <div className="space-y-6">
-            <p className="text-muted-foreground">
-              Feel free to reach out for collaborations, opportunities, or just a friendly hello!
-            </p>
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 text-sm">
-                <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center">
-                  <Mail size={18} className="text-primary" />
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">Email</p>
-                  <p className="font-medium text-foreground">kottanavaralakshmi16@gmail.com</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 text-sm">
-                <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center">
-                  <Phone size={18} className="text-primary" />
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">Phone</p>
-                  <p className="font-medium text-foreground">8179559350</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 text-sm">
-                <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center">
-                  <MapPin size={18} className="text-primary" />
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">Location</p>
-                  <p className="font-medium text-foreground">India</p>
-                </div>
+          <AnimateOnScroll animation="animate-fade-in-left">
+            <div className="space-y-6">
+              <p className="text-muted-foreground">
+                Feel free to reach out for collaborations, opportunities, or just a friendly hello!
+              </p>
+              <div className="space-y-4">
+                {[
+                  { icon: Mail, label: "Email", value: "kottanavaralakshmi16@gmail.com" },
+                  { icon: Phone, label: "Phone", value: "8179559350" },
+                  { icon: MapPin, label: "Location", value: "India" },
+                ].map((item) => (
+                  <div key={item.label} className="flex items-center gap-3 text-sm group hover:translate-x-1 transition-transform">
+                    <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                      <item.icon size={18} className="text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-muted-foreground">{item.label}</p>
+                      <p className="font-medium text-foreground">{item.value}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <Input
-              placeholder="Your Name"
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              required
-            />
-            <Input
-              type="email"
-              placeholder="Your Email"
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              required
-            />
-            <Textarea
-              placeholder="Your Message"
-              rows={5}
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
-              required
-            />
-            <Button type="submit" className="w-full">
-              Send Message
-            </Button>
-          </form>
+          </AnimateOnScroll>
+          <AnimateOnScroll animation="animate-fade-in-right">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <Input
+                placeholder="Your Name"
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                required
+                className="transition-all focus:scale-[1.01]"
+              />
+              <Input
+                type="email"
+                placeholder="Your Email"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                required
+                className="transition-all focus:scale-[1.01]"
+              />
+              <Textarea
+                placeholder="Your Message"
+                rows={5}
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
+                required
+                className="transition-all focus:scale-[1.01]"
+              />
+              <Button type="submit" className="w-full hover:scale-[1.02] transition-transform">
+                Send Message
+              </Button>
+            </form>
+          </AnimateOnScroll>
         </div>
       </div>
     </section>
