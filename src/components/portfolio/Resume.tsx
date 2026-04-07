@@ -31,7 +31,7 @@ const Resume = () => (
 
       <AnimateOnScroll animation="animate-scale-in" className="flex justify-center mb-14">
         <Button size="lg" className="gap-2 hover:scale-105 transition-transform shadow-lg" asChild>
-          <a href="/vara_resume.pdf" download>
+          <a href="/vara_resume.pdf" target="_blank" rel="noopener noreferrer">
             <Download size={18} />
             Download Resume (PDF)
           </a>
