@@ -4,7 +4,7 @@ import About from "@/components/portfolio/About";
 import Skills from "@/components/portfolio/Skills";
 import Projects from "@/components/portfolio/Projects";
 import Resume from "@/components/portfolio/Resume";
-import Gallery from "@/components/portfolio/Gallery";
+
 import Contact from "@/components/portfolio/Contact";
 import Footer from "@/components/portfolio/Footer";
 
@@ -16,7 +16,7 @@ const Index = () => (
     <Skills />
     <Projects />
     <Resume />
-    <Gallery />
+    
     <Contact />
     <Footer />
   </div>
